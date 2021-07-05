@@ -29,10 +29,9 @@ public class CompanyProjection {
             List<Company> companies = repository.findAll();
             List<CompanyView> response = new ArrayList<>();
             if (!companies.isEmpty()) {
-                companies.stream().flatMap(company -> {
-                    response.add(new CompanyView(company));
-                    return null;
-                });
+                for (int i = 0; i < companies.size(); i++) {
+                    response.add(new CompanyView(companies.get(i)));
+                }
             }
             return response;
         } catch (Exception e) {
